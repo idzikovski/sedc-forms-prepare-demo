@@ -34,5 +34,9 @@ namespace RealEstate.Views
                 estatesCollection.Add(estate);
             }
         }
+
+        void RefreshView_Refreshing(object sender, EventArgs e)
+        {
+        }
     }
 }

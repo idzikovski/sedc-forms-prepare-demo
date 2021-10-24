@@ -7,57 +7,59 @@
     ios:Page.UseSafeArea="True">
     <ContentPage.Content>
         <StackLayout>
-            <CollectionView x:Name="collectionView"
+            <RefreshView Refreshing="RefreshView_Refreshing">
+                <CollectionView x:Name="collectionView"
                             RemainingItemsThreshold="10"
                             RemainingItemsThresholdReached="RemainingItemsThresholdReached">
-                <!--<CollectionView.ItemsLayout>
+                    <!--<CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical"/>
                 </CollectionView.ItemsLayout>-->
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout Padding="12,6">
-                            <Frame InputTransparent="True">
-                                <Grid ColumnSpacing="15" VerticalOptions="Center">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="70"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Frame CornerRadius="15"
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="12,6">
+                                <Frame InputTransparent="True">
+                                    <Grid ColumnSpacing="15" VerticalOptions="Center">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="70"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Frame CornerRadius="15"
                                         Padding="0"
                                         HeightRequest="70"
                                         WidthRequest="70"
                                         HorizontalOptions="Center"
                                         VerticalOptions="Center">
-                                        <Image Grid.Column="0"
+                                            <Image Grid.Column="0"
                                               Aspect="AspectFit"
                                            Source="{Binding PhotoUrl}"
                                          HeightRequest="70"
                                          WidthRequest="70"
                                          HorizontalOptions="Center"
                                          VerticalOptions="Center"/>
-                                    </Frame>
-                                    <StackLayout Grid.Column="1"
+                                        </Frame>
+                                        <StackLayout Grid.Column="1"
                                      VerticalOptions="Center">
-                                        <Label Text="{Binding EstateName}"
+                                            <Label Text="{Binding EstateName}"
                                                FontSize="Large"
                                                TextColor="Black"
                                                LineBreakMode="TailTruncation"/>
-                                        <Label Text="{Binding ContactPersonName}"
+                                            <Label Text="{Binding ContactPersonName}"
                                                FontSize="Medium"
                                                LineBreakMode="TailTruncation"/>
-                                        <Label Text="{Binding Address}"
+                                            <Label Text="{Binding Address}"
                                                FontSize="Medium"
                                                LineBreakMode="TailTruncation"/>
-                                    </StackLayout>
-                                </Grid>
-                            </Frame>
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                                        </StackLayout>
+                                    </Grid>
+                                </Frame>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
         </StackLayout>
 
         <!--<controls:CustomFrame CornerRadius="40,15,15,40"
