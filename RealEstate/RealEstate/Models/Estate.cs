@@ -1,39 +1,34 @@
-﻿namespace RealEstate.Models
+﻿using Newtonsoft.Json;
+
+namespace RealEstate.Models
 {
     public class Estate
     {
-		public string Id { get; set; }
+        [JsonProperty("id")]
+        public long Id { get; set; }
 
-		public string DataPartitionId { get; set; }
+        [JsonProperty("estateName")]
+        public string EstateName { get; set; }
 
-		public string FirstName { get; set; }
+        [JsonProperty("contactPersonName")]
+        public string ContactPersonName { get; set; }
 
-		public string LastName { get; set; }
+        [JsonProperty("contactPersonPhone")]
+        public string ContactPersonPhone { get; set; }
 
-		public string Company { get; set; }
+        [JsonProperty("contactPersonEmail")]
+        public string ContactPersonEmail { get; set; }
 
-		public string JobTitle { get; set; }
+        [JsonProperty("latitude")]
+        public double Latitude { get; set; }
 
-		public string Email { get; set; }
+        [JsonProperty("longitude")]
+        public double Longitude { get; set; }
 
-		public string Phone { get; set; }
+        [JsonProperty("address")]
+        public string Address { get; set; }
 
-		public string Street { get; set; }
-
-		public string City { get; set; }
-
-		public string PostalCode { get; set; }
-
-		public string State { get; set; }
-
-		public string PhotoUrl { get; set; }
-
-		public string AddressString { get; }
-
-		public string DisplayName { get; }
-
-		public string DisplayLastNameFirst { get; }
-
-		public string StatePostal { get; }
-	}
+        [JsonProperty("photoUrl")]
+        public object PhotoUrl { get; set; }
+    }
 }
