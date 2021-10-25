@@ -3,14 +3,18 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:controls="clr-namespace:RealEstate.Controls"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     x:Class="RealEstate.Views.ListPage"
-    ios:Page.UseSafeArea="True">
+    ios:Page.UseSafeArea="True"
+    NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout>
             <RefreshView Refreshing="RefreshView_Refreshing">
                 <CollectionView x:Name="collectionView"
                             RemainingItemsThreshold="10"
-                            RemainingItemsThresholdReached="RemainingItemsThresholdReached">
+                            RemainingItemsThresholdReached="RemainingItemsThresholdReached"
+                                SelectionChanged="collectionView_SelectionChanged"
+                                SelectionMode="Single">
                     <!--<CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical"/>
                 </CollectionView.ItemsLayout>-->
@@ -26,7 +30,7 @@
                                             <ColumnDefinition Width="70"/>
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
-                                        <Frame CornerRadius="15"
+                                        <pancakeview:PancakeView CornerRadius="25,10,10,25"
                                         Padding="0"
                                         HeightRequest="70"
                                         WidthRequest="70"
@@ -39,7 +43,7 @@
                                          WidthRequest="70"
                                          HorizontalOptions="Center"
                                          VerticalOptions="Center"/>
-                                        </Frame>
+                                        </pancakeview:PancakeView>
                                         <StackLayout Grid.Column="1"
                                      VerticalOptions="Center">
                                             <Label Text="{Binding EstateName}"

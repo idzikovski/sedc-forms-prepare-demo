@@ -38,5 +38,10 @@ namespace RealEstate.Views
         void RefreshView_Refreshing(object sender, EventArgs e)
         {
         }
+
+        void collectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Navigation.PushAsync(new DetailsPage());
+        }
     }
 }
