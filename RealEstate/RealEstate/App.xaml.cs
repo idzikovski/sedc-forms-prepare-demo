@@ -11,7 +11,7 @@ namespace RealEstate
         {
             InitializeComponent();
 
-            MainPage = new ListPage();
+            MainPage = new DetailsPage();
         }
 
         protected override void OnStart()
