@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:RealEstate.Components"
+    x:Class="RealEstate.Views.DetailsPage">
+    <ContentPage.Content>
+        <Frame Margin="12,6" InputTransparent="True">
+            <StackLayout>
+                <Grid ColumnSpacing="15"
+                      RowSpacing="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <BoxView Grid.Column="0"
+                            BackgroundColor="#000066"
+                             CornerRadius="40,15,15,40"
+                             HeightRequest="100"
+                             WidthRequest="100"
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center"/>
+                    <StackLayout Grid.Column="1"
+                                 VerticalOptions="Center">
+                        <Label Text="Real Eastate Name"/>
+                        <Label Text="Contact Person Name"/>
+                        <Label Text="Location"/>
+                    </StackLayout>
+                </Grid>
+                <FlexLayout Wrap="Wrap" x:Name="flexLayout">
+                    <components:ChipView Text="One" Padding="6,3"
+                                         ChipDeleted="ChipView_ChipDeleted"/>
+                    <components:ChipView Text="Two" Padding="6,3"
+                                         ChipDeleted="ChipView_ChipDeleted"/>
+                    <components:ChipView Text="Three" Padding="6,3"
+                                         ChipDeleted="ChipView_ChipDeleted"/>
+                    <components:ChipView Text="Four" Padding="6,3"
+                                         ChipDeleted="ChipView_ChipDeleted"/>
+                    <components:ChipView Text="One" Padding="6,3"
+                                         ChipDeleted="ChipView_ChipDeleted"/>
+                    <components:ChipView Text="Two" Padding="6,3"
+                                         ChipDeleted="ChipView_ChipDeleted"/>
+                    <components:ChipView Text="Three" Padding="6,3"
+                                         ChipDeleted="ChipView_ChipDeleted"/>
+                    <components:ChipView Text="Four" Padding="6,3"
+                                         ChipDeleted="ChipView_ChipDeleted"/>
+                    <components:ChipView Text="One" Padding="6,3"
+                                         ChipDeleted="ChipView_ChipDeleted"/>
+                    <components:ChipView Text="Two" Padding="6,3"
+                                         ChipDeleted="ChipView_ChipDeleted"/>
+                    <components:ChipView Text="Three" Padding="6,3"
+                                         ChipDeleted="ChipView_ChipDeleted"/>
+                    <components:ChipView Text="Four" Padding="6,3"
+                                         ChipDeleted="ChipView_ChipDeleted"/>
+                </FlexLayout>
+                </StackLayout>
+            </Frame>
+    </ContentPage.Content>
+</ContentPage>
