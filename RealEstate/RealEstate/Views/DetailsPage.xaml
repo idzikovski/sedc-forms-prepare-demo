@@ -5,7 +5,7 @@
     xmlns:components="clr-namespace:RealEstate.Components"
     x:Class="RealEstate.Views.DetailsPage">
     <ContentPage.Content>
-        <Frame Margin="12,6" InputTransparent="True">
+        <Frame Margin="12,6">
             <StackLayout>
                 <Grid ColumnSpacing="15"
                       RowSpacing="10">

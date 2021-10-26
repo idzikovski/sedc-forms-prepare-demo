@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamarinFormsSandbox.MVVMandDataBinding;
 using XamarinFormsSandbox.XAML;
 
 namespace XamarinFormsSandbox
@@ -11,7 +12,7 @@ namespace XamarinFormsSandbox
         {
             InitializeComponent();
 
-            MainPage = new MarkupExtensions();
+            MainPage = new MyPage();
         }
 
         protected override void OnStart()
