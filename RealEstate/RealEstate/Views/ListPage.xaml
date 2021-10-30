@@ -19,10 +19,16 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
-            <CollectionView x:Name="collectionView"
+
+            <!--<CollectionView x:Name="collectionView"
                             ItemsSource="{Binding EstateCollection}"
                             RemainingItemsThreshold="10"
                             RemainingItemsThresholdReachedCommand="{Binding RemainingItemsThresholdReachedCommand}"
+                            SelectionMode="Single"
+                            SelectionChanged="collectionView_SelectionChanged"> -->
+
+            <CollectionView x:Name="collectionView"
+                            ItemsSource="{Binding EstateCollection}"
                             SelectionMode="Single"
                             SelectionChanged="collectionView_SelectionChanged">
                 <CollectionView.ItemTemplate>

@@ -1,7 +1,12 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Windows.Input;
+using Newtonsoft.Json;
 using RealEstate.Models;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace RealEstate.ViewModels
@@ -9,6 +14,13 @@ namespace RealEstate.ViewModels
     public class ListViewModel : BaseViewModel
     {
         private readonly int PageSize = 30;
+
+        private readonly int ValidLocalDataTimeInMinutes = 2;
+
+        private readonly string EstatesFilePath;
+
+        private bool IsLocalDataValid => DateTime.Now < Preferences.Get(PreferenceKeys.LastEstateUpdateTimeKey, default(DateTime))
+            .AddMinutes(ValidLocalDataTimeInMinutes);
 
         public ICommand RemainingItemsThresholdReachedCommand => new Command(() =>
         {
@@ -37,7 +49,24 @@ namespace RealEstate.ViewModels
 
         public ListViewModel()
         {
-            EstateCollection = new ObservableCollection<Estate>(EstateGenerator.Estates.Take(PageSize));
+            //EstateCollection = new ObservableCollection<Estate>(EstateGenerator.Estates.Take(PageSize));
+
+            EstatesFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "estate_data.txt");
+
+            List<Estate> estates;
+
+            if (File.Exists(EstatesFilePath) && IsLocalDataValid)
+            {
+                estates = JsonConvert.DeserializeObject<List<Estate>>(File.ReadAllText(EstatesFilePath));
+            }
+            else
+            {
+                estates = EstateGenerator.Estates;
+                File.WriteAllText(EstatesFilePath, JsonConvert.SerializeObject(estates));
+                Preferences.Set(PreferenceKeys.LastEstateUpdateTimeKey, DateTime.Now);
+            }
+
+            EstateCollection = new ObservableCollection<Estate>(estates);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace RealEstate
             if (Preferences.ContainsKey(PreferenceKeys.IsUserLoggedInKey)
                 && Preferences.Get(PreferenceKeys.IsUserLoggedInKey, false))
             {
-                MainPage = new ListPage();
+                MainPage = new NavigationPage(new ListPage());
             }
             else
             {
