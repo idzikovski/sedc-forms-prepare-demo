@@ -4,7 +4,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Plugin.Connectivity;
-using Xamarin.Essentials;
 
 namespace XamarinFormsSandbox.WorkingWithData
 {
