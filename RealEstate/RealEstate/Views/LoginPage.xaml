@@ -21,7 +21,8 @@
                 <Entry/>
                 <Label Text="Password"/>
                 <Entry/>
-                <Button Text="Login" />
+                <Button Text="Login"
+                        Clicked="Button_Clicked"/>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

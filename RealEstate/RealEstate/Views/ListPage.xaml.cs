@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System.Linq;
 using RealEstate.Models;
 using Xamarin.Forms;
 
@@ -8,28 +6,28 @@ namespace RealEstate.Views
 {
     public partial class ListPage : ContentPage
     {
-        private readonly int PageSize = 30;
-
-        private ObservableCollection<Estate> estatesCollection;
-
         public ListPage()
         {
             InitializeComponent();
-            collectionView.ItemsSource = estatesCollection = new ObservableCollection<Estate>(EstateGenerator.Estates.Take(PageSize));
         }
 
-        void RemainingItemsThresholdReached(object sender, EventArgs e)
+        void collectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (estatesCollection.Count < EstateGenerator.Estates.Count)
+            Estate selectedEstate = e.CurrentSelection.FirstOrDefault() as Estate;
+
+            if (selectedEstate == null)
+                return;
+
+            try
             {
-
-                var nexList = EstateGenerator.Estates.Skip(estatesCollection.Count).Take(PageSize);
-
-                foreach (var estate in nexList)
-                {
-                    estatesCollection.Add(estate);
-                }
+                Navigation.PushAsync(new DetailsPage(selectedEstate));
             }
+            catch (System.Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex);
+            }
+
+            collectionView.SelectedItem = null;
         }
     }
 }

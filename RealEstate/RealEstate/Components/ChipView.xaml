@@ -6,7 +6,9 @@
     <ContentView.Content>
         <Frame HeightRequest="32"
                CornerRadius="16"
-               Padding="10,0,6,0">
+               HasShadow="False"
+               Padding="10,0,6,0"
+               x:Name="chipFrame">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -14,12 +16,13 @@
                 <Label x:Name="label"
                         Grid.Row="0"
                        Grid.Column="0"
-                       Text="My Chip"
                        VerticalOptions="Center"/>
                 <Frame Grid.Row="0"
                        Grid.Column="1"
                        VerticalOptions="Center"
                        Padding="0"
+                       x:Name="deleteFrame"
+                       HasShadow="False"
                        HeightRequest="20"
                        WidthRequest="20"
                        CornerRadius="10">

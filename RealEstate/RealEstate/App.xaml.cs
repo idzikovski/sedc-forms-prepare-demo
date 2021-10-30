@@ -1,7 +1,5 @@
-﻿using System;
-using RealEstate.Views;
+﻿using RealEstate.Views;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace RealEstate
 {
@@ -11,7 +9,7 @@ namespace RealEstate
         {
             InitializeComponent();
 
-            MainPage = new DetailsPage();
+            MainPage = new LoginPage();
         }
 
         protected override void OnStart()

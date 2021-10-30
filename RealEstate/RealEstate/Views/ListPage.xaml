@@ -4,13 +4,20 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:viewmodels="clr-namespace:RealEstate.ViewModels"
     x:Class="RealEstate.Views.ListPage"
     ios:Page.UseSafeArea="True">
+    <ContentPage.BindingContext>
+        <viewmodels:ListViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
             <CollectionView x:Name="collectionView"
+                            ItemsSource="{Binding EstatesCollection}"
                             RemainingItemsThreshold="10"
-                            RemainingItemsThresholdReached="RemainingItemsThresholdReached">
+                            RemainingItemsThresholdReachedCommand="{Binding RemainingItemsThresholdReachedCommand}"
+                            SelectionChanged="collectionView_SelectionChanged"
+                                SelectionMode="Single">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Padding="12,6">
