@@ -1,16 +1,19 @@
-﻿using RealEstate.Views;
-using Xamarin.Essentials;
+﻿using System;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+using FlyoutApp.Services;
+using FlyoutApp.Views;
 
-namespace RealEstate
+namespace FlyoutApp
 {
     public partial class App : Application
     {
+
         public App()
         {
             InitializeComponent();
-            Routing.RegisterRoute(nameof(DetailsPage), typeof(DetailsPage));
 
+            DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
         }
 

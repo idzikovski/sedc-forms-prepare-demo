@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows.Input;
 using Newtonsoft.Json;
 using RealEstate.Models;
+using RealEstate.Views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -34,6 +35,11 @@ namespace RealEstate.ViewModels
                     EstateCollection.Add(estate);
                 }
             }
+        });
+
+        public ICommand SelectionChangedCommand => new Command(async () =>
+        {
+            await Shell.Current.GoToAsync(nameof(DetailsPage));
         });
 
         private ObservableCollection<Estate> _estatesCollection;
