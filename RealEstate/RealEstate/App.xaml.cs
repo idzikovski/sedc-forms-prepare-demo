@@ -1,8 +1,6 @@
-﻿using System;
-using RealEstate.Views;
+﻿using RealEstate.Views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace RealEstate
 {
