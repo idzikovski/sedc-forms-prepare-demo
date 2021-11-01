@@ -86,6 +86,10 @@ namespace RealEstate.ViewModels
             }
         }
 
+        public double Latitude { get; set; }
+
+        public double Longitude { get; set; }
+
         private void Initialize(Estate estate)
         {
             if (estate != null)
@@ -96,6 +100,8 @@ namespace RealEstate.ViewModels
                 ContactPersonEmail = estate.ContactPersonEmail;
                 Address = estate.Address;
                 PhotoUrl = estate.PhotoUrl;
+                Latitude = estate.Latitude;
+                Longitude = estate.Longitude;
             }
         }
     }
