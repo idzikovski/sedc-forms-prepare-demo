@@ -8,10 +8,10 @@ namespace RealEstate.Views
 {
     public partial class DetailsPage : ContentPage
     {
-        public DetailsPage(Estate estate)
+        public DetailsPage()
         {
             InitializeComponent();
-            BindingContext = new DetailsViewModel(estate);
+            BindingContext = new DetailsViewModel();
         }
     }
 }

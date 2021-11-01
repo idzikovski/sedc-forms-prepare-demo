@@ -37,9 +37,10 @@ namespace RealEstate.ViewModels
             }
         });
 
-        public ICommand SelectionChangedCommand => new Command(async () =>
+        public ICommand SelectionChangedCommand => new Command(async (args) =>
         {
-            await Shell.Current.GoToAsync(nameof(DetailsPage));
+            var selectedEstate = (Estate)args;
+            await Shell.Current.GoToAsync($"{nameof(DetailsPage)}?Id={selectedEstate.Id}");
         });
 
         private ObservableCollection<Estate> _estatesCollection;

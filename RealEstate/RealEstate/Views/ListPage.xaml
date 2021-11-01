@@ -30,7 +30,8 @@
             <CollectionView x:Name="collectionView"
                             ItemsSource="{Binding EstateCollection}"
                             SelectionMode="Single"
-                            SelectionChangedCommand="{Binding SelectionChangedCommand}">
+                            SelectionChangedCommand="{Binding SelectionChangedCommand}"
+                            SelectionChangedCommandParameter="{Binding Path=SelectedItem, Source={x:Reference collectionView}}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Padding="12,6">
