@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using RealEstate.Models;
-using RealEstate.ViewModels;
+﻿using RealEstate.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 
