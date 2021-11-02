@@ -9,25 +9,24 @@ namespace XamarinFormsSandbox.WorkingWithData
 {
     public class RestClientService
     {
-        private readonly string BaseUrl = "https://jsonplaceholder.typicode.com";
+        private readonly Uri BaseUrl = new Uri("https://jsonplaceholder.typicode.com/");
 
         private HttpClient client;
 
         public RestClientService()
         {
-            client = new HttpClient() { BaseAddress = new Uri(BaseUrl) };
+            client = new HttpClient() { BaseAddress = BaseUrl };
         }
 
         public async Task<string> GetAsync(string route)
         {
             if (CrossConnectivity.Current.IsConnected)
             {
+                HttpResponseMessage response = await client.GetAsync(route);
 
-                HttpResponseMessage responseMessage = await client.GetAsync(route);
-
-                if (responseMessage.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
                 {
-                    return await responseMessage.Content.ReadAsStringAsync();
+                    return await response.Content.ReadAsStringAsync();
                 }
             }
 
@@ -36,18 +35,7 @@ namespace XamarinFormsSandbox.WorkingWithData
 
         public async Task<T> GetAsync<T>(string route)
         {
-            if (CrossConnectivity.Current.IsConnected)
-            {
-
-                HttpResponseMessage responseMessage = await client.GetAsync(route);
-
-                if (responseMessage.IsSuccessStatusCode)
-                {
-                    return JsonConvert.DeserializeObject<T>(await responseMessage.Content.ReadAsStringAsync());
-                }
-            }
-
-            return default;
+            return JsonConvert.DeserializeObject<T>(await GetAsync(route));
         }
 
         public async Task<string> PostAsync(string route, object body)
@@ -56,11 +44,11 @@ namespace XamarinFormsSandbox.WorkingWithData
             {
                 var stringContent = new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8, "application/json");
 
-                HttpResponseMessage responseMessage = await client.PostAsync(route, stringContent);
+                HttpResponseMessage response = await client.PostAsync(route, stringContent);
 
-                if (responseMessage.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
                 {
-                    return await responseMessage.Content.ReadAsStringAsync();
+                    return await response.Content.ReadAsStringAsync();
                 }
             }
 
@@ -80,11 +68,11 @@ namespace XamarinFormsSandbox.WorkingWithData
                     Content = stringContent
                 };
 
-                HttpResponseMessage responseMessage = await client.SendAsync(request);
+                HttpResponseMessage response = await client.SendAsync(request);
 
-                if (responseMessage.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
                 {
-                    return await responseMessage.Content.ReadAsStringAsync();
+                    return await response.Content.ReadAsStringAsync();
                 }
             }
 
@@ -95,11 +83,11 @@ namespace XamarinFormsSandbox.WorkingWithData
         {
             if (CrossConnectivity.Current.IsConnected)
             {
-                HttpResponseMessage responseMessage = await client.DeleteAsync(route);
+                HttpResponseMessage response = await client.DeleteAsync(route);
 
-                if (responseMessage.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
                 {
-                    return await responseMessage.Content.ReadAsStringAsync();
+                    return await response.Content.ReadAsStringAsync();
                 }
             }
 

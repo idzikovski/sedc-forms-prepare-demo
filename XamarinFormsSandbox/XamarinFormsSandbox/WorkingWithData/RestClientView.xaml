@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:workingwithdata="clr-namespace:XamarinFormsSandbox.WorkingWithData"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:workingwithdata="clr-namespace:XamarinFormsSandbox.WorkingWithData"
     x:Class="XamarinFormsSandbox.WorkingWithData.RestClientView"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     ios:Page.UseSafeArea="True">
@@ -9,20 +10,17 @@
         <workingwithdata:RestClientViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+        <StackLayout>
             <StackLayout Orientation="Horizontal">
-                <Button Text="Get" Command="{Binding GetCommand}"/>
-                <Button Text="Post" Command="{Binding PostCommand}"/>
-                <Button Text="Patch" Command="{Binding PatchCommand}"/>
-                <Button Text="Delete" Command="{Binding DeleteCommand}"/>
+                <Button Text="GET" Command="{Binding GetCommand}"/>
+                <Button Text="POST" Command="{Binding PostCommand}"/>
+                <Button Text="PATCH" Command="{Binding PatchCommand}"/>
+                <Button Text="DELETE" Command="{Binding DeleteCommand}"/>
             </StackLayout>
-            <ScrollView Grid.Row="1">
+            <ScrollView HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand">
                 <Label Text="{Binding ResultLabel}"/>
             </ScrollView>
-        </Grid>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

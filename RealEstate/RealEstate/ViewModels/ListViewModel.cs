@@ -16,12 +16,10 @@ namespace RealEstate.ViewModels
     {
         private readonly int PageSize = 30;
 
-        private readonly int ValidLocalDataTimeInMinutes = 2;
+        private readonly int ValidLocalEstateDataInMinutes;
 
-        private readonly string EstatesFilePath;
-
-        private bool IsLocalDataValid => DateTime.Now < Preferences.Get(PreferenceKeys.LastEstateUpdateTimeKey, default(DateTime))
-            .AddMinutes(ValidLocalDataTimeInMinutes);
+        private bool IsLocalDataValid => DateTime.Now < Preferences.Get(PreferencesKeys.LastEsateUpdateTime,
+            default(DateTime)).AddMinutes(ValidLocalEstateDataInMinutes);
 
         public ICommand RemainingItemsThresholdReachedCommand => new Command(() =>
         {
@@ -58,19 +56,20 @@ namespace RealEstate.ViewModels
         {
             //EstateCollection = new ObservableCollection<Estate>(EstateGenerator.Estates.Take(PageSize));
 
-            EstatesFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "estate_data.txt");
+            var path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            var fullPath = Path.Combine(path, "estate_data.txt");
 
             List<Estate> estates;
 
-            if (File.Exists(EstatesFilePath) && IsLocalDataValid)
+            if (File.Exists(fullPath) && IsLocalDataValid)
             {
-                estates = JsonConvert.DeserializeObject<List<Estate>>(File.ReadAllText(EstatesFilePath));
+                estates = JsonConvert.DeserializeObject<List<Estate>>(File.ReadAllText(fullPath));
             }
             else
             {
                 estates = EstateGenerator.Estates;
-                File.WriteAllText(EstatesFilePath, JsonConvert.SerializeObject(estates));
-                Preferences.Set(PreferenceKeys.LastEstateUpdateTimeKey, DateTime.Now);
+                File.WriteAllText(fullPath, JsonConvert.SerializeObject(estates));
+                Preferences.Set(PreferencesKeys.LastEsateUpdateTime, DateTime.Now);
             }
 
             EstateCollection = new ObservableCollection<Estate>(estates);
