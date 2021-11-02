@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows.Input;
 using Newtonsoft.Json;
 using RealEstate.Models;
+using RealEstate.Themes;
 using RealEstate.Views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -74,5 +75,11 @@ namespace RealEstate.ViewModels
 
             EstateCollection = new ObservableCollection<Estate>(estates);
         }
+
+        public ICommand ToggleThemeCommand => new Command(() =>
+        {
+            Theme themeToSet = Settings.ThemeOption == Theme.Light ? Theme.Dark : Theme.Light;
+            ThemeHelper.ChangeTheme(themeToSet);
+        });
     }
 }

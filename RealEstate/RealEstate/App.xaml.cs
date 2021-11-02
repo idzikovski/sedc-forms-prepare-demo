@@ -1,5 +1,5 @@
-﻿using RealEstate.Views;
-using Xamarin.Essentials;
+﻿using RealEstate.Themes;
+using RealEstate.Views;
 using Xamarin.Forms;
 
 namespace RealEstate
@@ -16,6 +16,7 @@ namespace RealEstate
 
         protected override void OnStart()
         {
+            ThemeHelper.ChangeTheme(Settings.ThemeOption, true);
         }
 
         protected override void OnSleep()
@@ -24,6 +25,7 @@ namespace RealEstate
 
         protected override void OnResume()
         {
+            ThemeHelper.ChangeTheme(Settings.ThemeOption, true);
         }
     }
 }
