@@ -8,7 +8,7 @@ using Plugin.Connectivity;
 namespace XamarinFormsSandbox.WorkingWithData
 {
     public class RestClientService
-    {
+    {   //bojan's bracsh
         private readonly Uri BaseUrl = new Uri("https://jsonplaceholder.typicode.com/");
 
         private HttpClient client;
