@@ -1,9 +1,5 @@
-﻿using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using XamarinFormsSandbox.DataBinding;
-using XamarinFormsSandbox.WorkingWithData;
-using XamarinFormsSandbox.XAML;
+﻿using Xamarin.Forms;
+using XamarinFormsSandbox.FormsGeneral;
 
 namespace XamarinFormsSandbox
 {
@@ -13,7 +9,7 @@ namespace XamarinFormsSandbox
         {
             InitializeComponent();
 
-            MainPage = new RestClientView();
+            MainPage = new NavigationPage(new CascadingStylesPage());
         }
 
         protected override void OnStart()

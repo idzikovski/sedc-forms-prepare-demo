@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="XamarinFormsSandbox.FormsGeneral.StylesPage"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.UseSafeArea="True">
+    <ContentPage.Resources>
+        <Style x:Key="baseStyle" TargetType="Label">
+            <Setter Property="BackgroundColor" Value="Black"/>
+        </Style>
+
+        <Style x:Key="bigLabel" BasedOn="{StaticResource baseStyle}" TargetType="Label">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="TextColor" Value="Gray"/>
+        </Style>
+
+        <Style x:Key="smallLabel" BasedOn="{StaticResource baseStyle}" TargetType="Label">
+            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="TextColor" Value="DimGray"/>
+        </Style>
+
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="17"/>
+            <Setter Property="TextColor" Value="LightGreen"/>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout VerticalOptions="Center"
+                     HorizontalOptions="Center">
+                <Label Text="Lorem ipsum dolor sit amet, consectetur"
+                   Style="{StaticResource bigLabel}"/>
+                <Label Text="Lorem ipsum dolor sit amet, consectetur"
+                   Style="{StaticResource bigLabel}"/>
+                <Label Text="Lorem ipsum dolor sit amet, consectetur"
+                   Style="{StaticResource smallLabel}"/>
+                <Label Text="Lorem ipsum dolor sit amet, consectetur"
+                   Style="{StaticResource smallLabel}"/>
+            </StackLayout>
+
+            <StackLayout VerticalOptions="Center"
+                     HorizontalOptions="Center">
+                <Label Text="Lorem ipsum dolor sit amet, consectetur"/>
+                <Label Text="Lorem ipsum dolor sit amet, consectetur"/>
+                <Label Text="Lorem ipsum dolor sit amet, consectetur"/>
+                <Label Text="Lorem ipsum dolor sit amet, consectetur"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

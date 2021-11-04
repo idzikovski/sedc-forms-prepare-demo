@@ -10,6 +10,11 @@
     x:Class="RealEstate.Views.DetailsPage"
     x:DataType="viewmodels:DetailsViewModel"
     BackgroundColor="{DynamicResource WindowBackgroundColor}">
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource WindowForegroundColor}"/>
+        </Style>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout Margin="12,6">
             <Grid ColumnSpacing="15"
@@ -36,12 +41,9 @@
                 </pancakeview:PancakeView>
                 <StackLayout Grid.Column="1"
                                  VerticalOptions="Center">
-                    <Label Text="{Binding EstateName}"
-                           TextColor="{DynamicResource WindowForegroundColor}"/>
-                    <Label Text="{Binding ContactPersonName}"
-                           TextColor="{DynamicResource WindowForegroundColor}"/>
-                    <Label Text="{Binding Address}"
-                           TextColor="{DynamicResource WindowForegroundColor}"/>
+                    <Label Text="{Binding EstateName}"/>
+                    <Label Text="{Binding ContactPersonName}"/>
+                    <Label Text="{Binding Address}"/>
                 </StackLayout>
             </Grid>
             <maps:Map x:Name="myMap"

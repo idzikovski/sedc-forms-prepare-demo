@@ -1,0 +1,27 @@
+﻿^contentpage{
+    background-color: beige;
+}
+
+stacklayout{
+    background-color: blue;
+    margin: 50;
+    -xf-spacing: 20;
+}
+
+label{
+    font-size: 10;
+    background-color: white;
+    color: red;
+}
+
+#myLabel{
+    background-color: green;
+}
+
+.myClass{
+    font-style: italic bold;
+}
+
+scrollview stacklayout{
+    background-color: pink;
+}
