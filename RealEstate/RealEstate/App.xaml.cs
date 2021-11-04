@@ -8,6 +8,7 @@ namespace RealEstate
     {
         public App()
         {
+            //Test
             InitializeComponent();
             Routing.RegisterRoute(nameof(DetailsPage), typeof(DetailsPage));
 
