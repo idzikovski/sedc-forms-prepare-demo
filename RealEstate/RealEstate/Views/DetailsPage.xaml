@@ -8,13 +8,7 @@
     xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
     ios:Page.UseSafeArea="True"
     x:Class="RealEstate.Views.DetailsPage"
-    x:DataType="viewmodels:DetailsViewModel"
-    BackgroundColor="{DynamicResource WindowBackgroundColor}">
-    <ContentPage.Resources>
-        <Style TargetType="Label">
-            <Setter Property="TextColor" Value="{DynamicResource WindowForegroundColor}"/>
-        </Style>
-    </ContentPage.Resources>
+    x:DataType="viewmodels:DetailsViewModel">
     <ContentPage.Content>
         <StackLayout Margin="12,6">
             <Grid ColumnSpacing="15"
@@ -47,7 +41,7 @@
                 </StackLayout>
             </Grid>
             <maps:Map x:Name="myMap"
-                HorizontalOptions="FillAndExpand"
+                      HorizontalOptions="FillAndExpand"
                       VerticalOptions="FillAndExpand"/>
         </StackLayout>
     </ContentPage.Content>

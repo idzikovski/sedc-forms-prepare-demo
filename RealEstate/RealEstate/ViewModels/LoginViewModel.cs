@@ -1,5 +1,5 @@
-﻿using System.Windows.Input;
-using RealEstate.Views;
+﻿using System;
+using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -9,17 +9,17 @@ namespace RealEstate.ViewModels
     {
         public LoginViewModel()
         {
-            if (Preferences.ContainsKey(PreferenceKeys.IsUserLoggedInKey)
-                && Preferences.Get(PreferenceKeys.IsUserLoggedInKey, false))
+            if (Preferences.ContainsKey(PreferencesKeys.IsUserLoggedIn)
+                && Preferences.Get(PreferencesKeys.IsUserLoggedIn, false))
             {
-                Shell.Current.GoToAsync($"//{nameof(ListPage)}");
+                Shell.Current.GoToAsync("//ListPage");
             }
         }
 
         public ICommand LoginCommand => new Command(async () =>
         {
-            Preferences.Set(PreferenceKeys.IsUserLoggedInKey, true);
-            await Shell.Current.GoToAsync($"//{nameof(ListPage)}");
+            Preferences.Set(PreferencesKeys.IsUserLoggedIn, true);
+            await Shell.Current.GoToAsync("//ListPage");
         });
     }
 }

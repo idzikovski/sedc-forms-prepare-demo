@@ -8,12 +8,7 @@
     xmlns:converters="clr-namespace:RealEstate.Converters"
     x:Class="RealEstate.Views.ListPage"
     ios:Page.UseSafeArea="True"
-    NavigationPage.HasNavigationBar="True"
-    BackgroundColor="{DynamicResource TransparentWindowBackgroundColor}">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Toggle Theme"
-                     Command="{Binding ToggleThemeCommand}"/>
-    </ContentPage.ToolbarItems>
+    NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:BoolToColorConverter x:Key="boolToColorConverter"/>
@@ -30,18 +25,17 @@
                             RemainingItemsThreshold="10"
                             RemainingItemsThresholdReachedCommand="{Binding RemainingItemsThresholdReachedCommand}"
                             SelectionMode="Single"
-                            SelectionChanged="collectionView_SelectionChanged"> -->
+                            SelectionChanged="collectionView_SelectionChanged">-->
 
             <CollectionView x:Name="collectionView"
                             ItemsSource="{Binding EstateCollection}"
                             SelectionMode="Single"
                             SelectionChangedCommand="{Binding SelectionChangedCommand}"
-                            SelectionChangedCommandParameter="{Binding Path=SelectedItem, Source={x:Reference collectionView}}">
+                            SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference collectionView}}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Padding="12,6">
-                            <!--<Frame BackgroundColor="{Binding Available, Converter={StaticResource boolToColorConverter}}">-->
-                            <Frame BackgroundColor="{DynamicResource WindowBackgroundColor}">
+                            <Frame BackgroundColor="{Binding Available, Converter={StaticResource boolToColorConverter}}">
                                 <Grid ColumnSpacing="15">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"/>
@@ -66,15 +60,13 @@
                                     <StackLayout Grid.Column="1"
                                  VerticalOptions="Center">
                                         <Label Text="{Binding EstateName}"
-                                               TextColor="{DynamicResource WindowForegroundColor}"
+                                               TextColor="Black"
                                                FontSize="Large"
                                                LineBreakMode="TailTruncation"/>
                                         <Label Text="{Binding ContactPersonName}"
-                                               TextColor="{DynamicResource WindowForegroundColor}"
                                                FontSize="Medium"
                                                LineBreakMode="TailTruncation"/>
                                         <Label Text="{Binding Address}"
-                                               TextColor="{DynamicResource WindowForegroundColor}"
                                                FontSize="Medium"
                                                LineBreakMode="TailTruncation"/>
                                     </StackLayout>

@@ -6,8 +6,6 @@ using System.Linq;
 using System.Windows.Input;
 using Newtonsoft.Json;
 using RealEstate.Models;
-using RealEstate.Themes;
-using RealEstate.Views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -34,12 +32,6 @@ namespace RealEstate.ViewModels
                     EstateCollection.Add(estate);
                 }
             }
-        });
-
-        public ICommand SelectionChangedCommand => new Command(async (args) =>
-        {
-            var selectedEstate = (Estate)args;
-            await Shell.Current.GoToAsync($"{nameof(DetailsPage)}?Id={selectedEstate.Id}");
         });
 
         private ObservableCollection<Estate> _estatesCollection;
@@ -76,10 +68,10 @@ namespace RealEstate.ViewModels
             EstateCollection = new ObservableCollection<Estate>(estates);
         }
 
-        public ICommand ToggleThemeCommand => new Command(() =>
+        public ICommand SelectionChangedCommand => new Command(async (arg) =>
         {
-            Theme themeToSet = Settings.ThemeOption == Theme.Light ? Theme.Dark : Theme.Light;
-            ThemeHelper.ChangeTheme(themeToSet);
+            var estate = (Estate)arg;
+            await Shell.Current.GoToAsync($"DetailsPage?Id={estate.Id}");
         });
     }
 }

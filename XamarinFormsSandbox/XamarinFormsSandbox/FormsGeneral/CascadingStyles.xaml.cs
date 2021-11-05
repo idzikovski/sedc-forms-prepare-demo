@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 
-namespace RealEstate.Themes
+namespace XamarinFormsSandbox.FormsGeneral
 {
-    public partial class DarkTheme : ResourceDictionary
+    public partial class CascadingStyles : ContentPage
     {
-        public DarkTheme()
+        public CascadingStyles()
         {
             InitializeComponent();
         }

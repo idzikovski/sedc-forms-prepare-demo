@@ -6,41 +6,48 @@
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     ios:Page.UseSafeArea="True">
     <ContentPage.Resources>
+
         <Style x:Key="baseStyle" TargetType="Label">
-            <Setter Property="BackgroundColor" Value="Black"/>
+            <Setter Property="BackgroundColor" Value="Yellow"/>
         </Style>
 
-        <Style x:Key="bigLabel" BasedOn="{StaticResource baseStyle}" TargetType="Label">
+        <Style x:Key="myBigLabel" BasedOn="{StaticResource baseStyle}" TargetType="Label">
             <Setter Property="FontSize" Value="15"/>
             <Setter Property="TextColor" Value="Gray"/>
         </Style>
 
-        <Style x:Key="smallLabel" BasedOn="{StaticResource baseStyle}" TargetType="Label">
+        <Style x:Key="mySmallLabel" BasedOn="{StaticResource baseStyle}" TargetType="Label">
             <Setter Property="FontSize" Value="10"/>
-            <Setter Property="TextColor" Value="DimGray"/>
+            <Setter Property="TextColor" Value="Black"/>
         </Style>
 
         <Style TargetType="Label">
-            <Setter Property="FontSize" Value="17"/>
-            <Setter Property="TextColor" Value="LightGreen"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="TextColor" Value="Blue"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
         </Style>
+
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout VerticalOptions="Center"
-                     HorizontalOptions="Center">
+            <StackLayout.Resources>
+                <Style x:Key="mySmallLabel" BasedOn="{StaticResource baseStyle}" TargetType="Label">
+                    <Setter Property="FontSize" Value="10"/>
+                    <Setter Property="TextColor" Value="Red"/>
+                </Style>
+            </StackLayout.Resources>
+            <StackLayout>
                 <Label Text="Lorem ipsum dolor sit amet, consectetur"
-                   Style="{StaticResource bigLabel}"/>
+                       Style="{StaticResource myBigLabel}"/>
                 <Label Text="Lorem ipsum dolor sit amet, consectetur"
-                   Style="{StaticResource bigLabel}"/>
+                       Style="{StaticResource myBigLabel}"/>
                 <Label Text="Lorem ipsum dolor sit amet, consectetur"
-                   Style="{StaticResource smallLabel}"/>
+                       Style="{StaticResource mySmallLabel}"/>
                 <Label Text="Lorem ipsum dolor sit amet, consectetur"
-                   Style="{StaticResource smallLabel}"/>
+                       Style="{StaticResource mySmallLabel}"/>
             </StackLayout>
 
-            <StackLayout VerticalOptions="Center"
-                     HorizontalOptions="Center">
+            <StackLayout>
                 <Label Text="Lorem ipsum dolor sit amet, consectetur"/>
                 <Label Text="Lorem ipsum dolor sit amet, consectetur"/>
                 <Label Text="Lorem ipsum dolor sit amet, consectetur"/>

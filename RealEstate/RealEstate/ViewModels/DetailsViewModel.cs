@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Linq;
 using RealEstate.Models;
 using Xamarin.Forms;
@@ -86,23 +85,20 @@ namespace RealEstate.ViewModels
             }
         }
 
-        public double Latitude { get; set; }
+        public double Lattitude { get; set; }
 
         public double Longitude { get; set; }
 
         private void Initialize(Estate estate)
         {
-            if (estate != null)
-            {
-                EstateName = estate.EstateName;
-                ContactPersonName = estate.ContactPersonName;
-                ContactPersonPhone = estate.ContactPersonPhone;
-                ContactPersonEmail = estate.ContactPersonEmail;
-                Address = estate.Address;
-                PhotoUrl = estate.PhotoUrl;
-                Latitude = estate.Latitude;
-                Longitude = estate.Longitude;
-            }
+            EstateName = estate.EstateName;
+            ContactPersonName = estate.ContactPersonName;
+            ContactPersonPhone = estate.ContactPersonPhone;
+            ContactPersonEmail = estate.ContactPersonEmail;
+            Address = estate.Address;
+            PhotoUrl = estate.PhotoUrl;
+            Lattitude = estate.Latitude;
+            Longitude = estate.Longitude;
         }
     }
 }

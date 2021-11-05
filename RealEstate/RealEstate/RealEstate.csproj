@@ -26,7 +26,6 @@
     <None Remove="ViewModels\" />
     <None Remove="Converters\" />
     <None Remove="Xamarin.Forms.Maps" />
-    <None Remove="Themes\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
@@ -34,6 +33,5 @@
     <Folder Include="Components\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Converters\" />
-    <Folder Include="Themes\" />
   </ItemGroup>
 </Project>

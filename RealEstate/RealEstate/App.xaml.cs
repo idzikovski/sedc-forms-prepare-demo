@@ -1,6 +1,8 @@
-﻿using RealEstate.Themes;
+﻿using System;
 using RealEstate.Views;
+using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace RealEstate
 {
@@ -9,14 +11,12 @@ namespace RealEstate
         public App()
         {
             InitializeComponent();
-            Routing.RegisterRoute(nameof(DetailsPage), typeof(DetailsPage));
 
             MainPage = new AppShell();
         }
 
         protected override void OnStart()
         {
-            ThemeHelper.ChangeTheme(Settings.ThemeOption, true);
         }
 
         protected override void OnSleep()
@@ -25,7 +25,6 @@ namespace RealEstate
 
         protected override void OnResume()
         {
-            ThemeHelper.ChangeTheme(Settings.ThemeOption, true);
         }
     }
 }

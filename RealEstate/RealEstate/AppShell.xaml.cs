@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using RealEstate.Views;
+using Xamarin.Forms;
 
 namespace RealEstate
 {
@@ -7,6 +8,8 @@ namespace RealEstate
         public AppShell()
         {
             InitializeComponent();
+
+            Routing.RegisterRoute(nameof(DetailsPage), typeof(DetailsPage));
         }
     }
 }
