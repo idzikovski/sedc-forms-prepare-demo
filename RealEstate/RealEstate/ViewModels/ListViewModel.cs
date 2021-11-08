@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Newtonsoft.Json;
 using RealEstate.Models;
+using RealEstate.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -15,7 +17,9 @@ namespace RealEstate.ViewModels
     {
         private readonly int PageSize = 30;
 
-        private readonly int ValidLocalEstateDataInMinutes;
+        private readonly int ValidLocalEstateDataInMinutes = 0;
+
+        private readonly EstatesService _estatesService;
 
         private bool IsLocalDataValid => DateTime.Now < Preferences.Get(PreferencesKeys.LastEsateUpdateTime,
             default(DateTime)).AddMinutes(ValidLocalEstateDataInMinutes);
@@ -45,10 +49,26 @@ namespace RealEstate.ViewModels
             }
         }
 
+        private bool _isBusy;
+        public bool IsBusy
+        {
+            get => _isBusy;
+            set
+            {
+                _isBusy = value;
+                OnPropertyChanged(nameof(IsBusy));
+            }
+        }
+
         public ListViewModel()
         {
             //EstateCollection = new ObservableCollection<Estate>(EstateGenerator.Estates.Take(PageSize));
 
+            _estatesService = new EstatesService();
+        }
+
+        public async Task InitializeAsync()
+        {
             var path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             var fullPath = Path.Combine(path, "estate_data.txt");
 
@@ -60,18 +80,36 @@ namespace RealEstate.ViewModels
             }
             else
             {
-                estates = EstateGenerator.Estates;
+                Device.BeginInvokeOnMainThread(() => IsBusy = true);
+                await Task.Delay(1500);
+
+                estates = await _estatesService.GetAllEstates();
                 File.WriteAllText(fullPath, JsonConvert.SerializeObject(estates));
                 Preferences.Set(PreferencesKeys.LastEsateUpdateTime, DateTime.Now);
             }
 
-            EstateCollection = new ObservableCollection<Estate>(estates);
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                EstateCollection = new ObservableCollection<Estate>(estates);
+                IsBusy = false;
+            });
         }
 
         public ICommand SelectionChangedCommand => new Command(async (arg) =>
         {
             var estate = (Estate)arg;
             await Shell.Current.GoToAsync($"DetailsPage?Id={estate.Id}");
+        });
+
+        public ICommand DeleteEstateCommand => new Command(async (arg) =>
+        {
+            var estate = (Estate)arg;
+            var success = await _estatesService.DeleteEstate(estate.Id);
+
+            if (success)
+            {
+                await InitializeAsync();
+            }
         });
     }
 }

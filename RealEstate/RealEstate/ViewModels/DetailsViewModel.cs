@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using Newtonsoft.Json;
 using RealEstate.Models;
+using RealEstate.Services;
 using Xamarin.Forms;
 
 namespace RealEstate.ViewModels
@@ -8,6 +12,12 @@ namespace RealEstate.ViewModels
     [QueryProperty(nameof(Id), nameof(Id))]
     public class DetailsViewModel : BaseViewModel
     {
+        private readonly EstatesService _estatesService;
+
+        private Estate _estate;
+
+        public event Action InitializationFinished;
+
         private string _id;
         public string Id
         {
@@ -15,7 +25,7 @@ namespace RealEstate.ViewModels
             set
             {
                 _id = Uri.UnescapeDataString(value);
-                Initialize(EstateGenerator.Estates.FirstOrDefault(x => x.Id == long.Parse(Id)));
+                Task.Run(async () => await Initialize(long.Parse(Id)));
             }
         }
 
@@ -89,16 +99,36 @@ namespace RealEstate.ViewModels
 
         public double Longitude { get; set; }
 
-        private void Initialize(Estate estate)
+        public DetailsViewModel()
         {
-            EstateName = estate.EstateName;
-            ContactPersonName = estate.ContactPersonName;
-            ContactPersonPhone = estate.ContactPersonPhone;
-            ContactPersonEmail = estate.ContactPersonEmail;
-            Address = estate.Address;
-            PhotoUrl = estate.PhotoUrl;
-            Lattitude = estate.Latitude;
-            Longitude = estate.Longitude;
+            _estatesService = new EstatesService();
+        }
+
+        public ICommand UpsertCommand => new Command(async (action) =>
+        {
+            await Shell.Current.GoToAsync($"UpsertPage?Action={action}&Estate={JsonConvert.SerializeObject(_estate)}");
+        });
+
+        private async Task Initialize(long id)
+        {
+            _estate = await _estatesService.GetEstate(id);
+
+            if (_estate != null)
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    EstateName = _estate.EstateName;
+                    ContactPersonName = _estate.ContactPersonName;
+                    ContactPersonPhone = _estate.ContactPersonPhone;
+                    ContactPersonEmail = _estate.ContactPersonEmail;
+                    Address = _estate.Address;
+                    PhotoUrl = _estate.PhotoUrl;
+                    Lattitude = _estate.Latitude;
+                    Longitude = _estate.Longitude;
+
+                    InitializationFinished?.Invoke();
+                });
+            }
         }
     }
 }

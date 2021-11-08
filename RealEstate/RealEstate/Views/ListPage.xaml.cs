@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using RealEstate.Models;
+using RealEstate.ViewModels;
 using Xamarin.Forms;
 
 namespace RealEstate.Views
@@ -9,6 +10,12 @@ namespace RealEstate.Views
         public ListPage()
         {
             InitializeComponent();
+        }
+
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+            await ((ListViewModel)BindingContext).InitializeAsync();
         }
     }
 }

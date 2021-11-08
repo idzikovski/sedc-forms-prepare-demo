@@ -9,6 +9,8 @@ namespace RealEstate.Views
 {
     public partial class DetailsPage : ContentPage
     {
+        private DetailsViewModel _viewModel;
+
         public DetailsPage()
         {
             InitializeComponent();
@@ -19,16 +21,20 @@ namespace RealEstate.Views
         {
             base.OnAppearing();
 
-            var viewModel = (DetailsViewModel)BindingContext;
+            _viewModel = (DetailsViewModel)BindingContext;
+            _viewModel.InitializationFinished += InitializationFinished;
+        }
 
-            var position = new Position(viewModel.Lattitude, viewModel.Longitude);
+        private void InitializationFinished()
+        {
+            var position = new Position(_viewModel.Lattitude, _viewModel.Longitude);
 
             var pin = new Pin
             {
                 Type = PinType.Place,
                 Position = position,
-                Label = viewModel.EstateName,
-                Address = viewModel.Address
+                Label = _viewModel.EstateName,
+                Address = _viewModel.Address
             };
 
             myMap.Pins.Add(pin);
