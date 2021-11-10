@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using RealEstate.Interfaces;
 using RealEstate.Services;
 using Xamarin.Forms;
 
@@ -9,7 +10,7 @@ namespace RealEstate.ViewModels
     [QueryProperty(nameof(Id), nameof(Id))]
     public class DetailsViewModel : BaseViewModel
     {
-        private EstatesService _estatesService;
+        private IEstatesService _estatesService;
 
         public event Action InitializationFinished;
 
@@ -99,9 +100,9 @@ namespace RealEstate.ViewModels
             Shell.Current.GoToAsync($"UpsertPage?Action={action}");
         });
 
-        public DetailsViewModel()
+        public DetailsViewModel(IEstatesService estatesService)
         {
-            _estatesService = new EstatesService();
+            _estatesService = estatesService;
         }
 
         private async Task Initialize(long id)

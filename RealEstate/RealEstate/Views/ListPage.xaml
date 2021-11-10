@@ -15,9 +15,6 @@
             <converters:BoolToColorConverter x:Key="boolToColorConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <ContentPage.BindingContext>
-        <viewmodels:ListViewModel/>
-    </ContentPage.BindingContext>
     <ContentPage.Content>
         <Grid>
 

@@ -4,9 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewmodels="clr-namespace:RealEstate.ViewModels"
     x:Class="RealEstate.Views.LoginPage">
-    <ContentPage.BindingContext>
-        <viewmodels:LoginViewModel/>
-    </ContentPage.BindingContext>
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>

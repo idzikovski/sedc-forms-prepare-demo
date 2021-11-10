@@ -1,6 +1,9 @@
 ﻿using System;
+using RealEstate.Interfaces;
+using RealEstate.ViewModels;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace RealEstate.Views
 {
@@ -9,6 +12,9 @@ namespace RealEstate.Views
         public LoginPage()
         {
             InitializeComponent();
+            BindingContext = new LoginViewModel(Startup.ServiceProvider.GetService<IEstatesService>(),
+                Startup.ServiceProvider.GetService<IPlatformService>(),
+                Startup.ServiceProvider.GetService<INavigationService>());
         }
     }
 }

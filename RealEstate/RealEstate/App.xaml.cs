@@ -11,6 +11,7 @@ namespace RealEstate
         public App()
         {
             InitializeComponent();
+            Startup.Init();
 
             MainPage = new AppShell();
         }

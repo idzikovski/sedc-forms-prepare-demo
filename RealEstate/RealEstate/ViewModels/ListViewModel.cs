@@ -6,9 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Newtonsoft.Json;
+using RealEstate.Interfaces;
 using RealEstate.Models;
-using RealEstate.Services;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace RealEstate.ViewModels
@@ -19,9 +18,11 @@ namespace RealEstate.ViewModels
 
         private readonly int ValidLocalEstateDataInMinutes;
 
-        private EstatesService _estatesService;
+        private readonly IEstatesService _estatesService;
+        private readonly IPlatformService _platformService;
+        private readonly INavigationService _navigationService;
 
-        private bool IsLocalDataValid => DateTime.Now < Preferences.Get(PreferencesKeys.LastEsateUpdateTime,
+        private bool IsLocalDataValid => DateTime.Now < _platformService.PreferencesGetDate(PreferencesKeys.LastEsateUpdateTime,
             default(DateTime)).AddMinutes(ValidLocalEstateDataInMinutes);
 
         public ICommand RemainingItemsThresholdReachedCommand => new Command(() =>
@@ -60,11 +61,15 @@ namespace RealEstate.ViewModels
             }
         }
 
-        public ListViewModel()
+        public ListViewModel(IEstatesService estatesService,
+            IPlatformService platformService,
+            INavigationService navigationService)
         {
             //EstateCollection = new ObservableCollection<Estate>(EstateGenerator.Estates.Take(PageSize));
 
-            _estatesService = new EstatesService();
+            _estatesService = estatesService;
+            _platformService = platformService;
+            _navigationService = navigationService;
         }
 
         public async Task InitializeAsync()
@@ -87,7 +92,7 @@ namespace RealEstate.ViewModels
 
                 estates = await _estatesService.GetAllEastates(); ;
                 File.WriteAllText(fullPath, JsonConvert.SerializeObject(estates));
-                Preferences.Set(PreferencesKeys.LastEsateUpdateTime, DateTime.Now);
+                _platformService.PreferencesSetDate(PreferencesKeys.LastEsateUpdateTime, DateTime.Now);
             }
 
             Device.BeginInvokeOnMainThread(() =>
@@ -100,7 +105,7 @@ namespace RealEstate.ViewModels
         public ICommand SelectionChangedCommand => new Command(async (arg) =>
         {
             var estate = (Estate)arg;
-            await Shell.Current.GoToAsync($"DetailsPage?Id={estate.Id}");
+            await _navigationService.NavigateAsync($"DetailsPage?Id={estate.Id}");
         });
 
         public ICommand DeleteCommand => new Command(async (arg) =>

@@ -4,11 +4,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Plugin.Connectivity;
+using RealEstate.Interfaces;
 using Xamarin.Essentials;
 
 namespace RealEstate.Services
 {
-    public class RestClientService
+    public class RestClientService : IRestClientService
     {
         private readonly Uri BaseUrl = new Uri("http://localhost:5000");
         //private readonly Uri BaseUrl = new Uri("http://10.0.2.2:5000");
@@ -35,7 +36,7 @@ namespace RealEstate.Services
             return Convert.ToBase64String(plainTextBytes);
         }
 
-        public async Task<string> GetAsync(string route)
+        private async Task<string> GetAsync(string route)
         {
             if (CrossConnectivity.Current.IsConnected)
             {
@@ -56,7 +57,7 @@ namespace RealEstate.Services
             return JsonConvert.DeserializeObject<T>(await GetAsync(route));
         }
 
-        public async Task<string> PostAsync(string route, object body)
+        private async Task<string> PostAsync(string route, object body)
         {
             if (CrossConnectivity.Current.IsConnected)
             {
@@ -78,7 +79,7 @@ namespace RealEstate.Services
             return JsonConvert.DeserializeObject<T>(await PostAsync(route, body));
         }
 
-        public async Task<string> PatchAsync(string route, object body)
+        private async Task<string> PatchAsync(string route, object body)
         {
             if (CrossConnectivity.Current.IsConnected)
             {
@@ -107,7 +108,7 @@ namespace RealEstate.Services
             return JsonConvert.DeserializeObject<T>(await PatchAsync(route, body));
         }
 
-        public async Task<string> DeleteAsync(string route)
+        private async Task<string> DeleteAsync(string route)
         {
             if (CrossConnectivity.Current.IsConnected)
             {
