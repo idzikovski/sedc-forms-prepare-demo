@@ -101,7 +101,19 @@ namespace RealEstate.ViewModels
 
         private async Task CreateEstate()
         {
+            Estate newEstate = new Estate
+            {
+                Id = 255,
+                EstateName = EstateName,
+                ContactPersonName = ContactName
+            };
 
+            Estate result = await _estatesService.CreateEstate(newEstate);
+
+            if (result != null)
+            {
+                await Shell.Current.GoToAsync("../..");
+            }
         }
 
         private async Task UpdateEstate()
